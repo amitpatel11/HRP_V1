@@ -1,0 +1,59 @@
+<!--  Created on 20-October-2016
+      Author: Nageswara rao
+      Copyright (c) 2016 by HR Platform. All Rights Reserved. -->
+      
+    <div class="row text-center title">
+         <h1>HR Platform</h1>
+	</div>
+<div class="col-sm-12 mainContent">
+	  
+	  <div class="col-sm-4"></div>
+	   <div class="col-sm-4">
+	   <h2 class="sub-title">Login here</h2>
+	    <a id="login_link" ui-sref="register">If You Are Not Registered ?Register here</a> <br /><br />
+	  <form name="loginForm">
+	                <div ng-hide="loginform1">
+	             
+			 			 <div class="col-md-12">
+							<div class="form-group has-feedback">
+								<input type="text" name="email" id="emailId" class="form-control"
+									placeholder="User Name" data-ng-model="userName"
+									maxlength="50" data-ng-required="true" />
+							</div>
+						</div>
+						<a id="next_link" ng-click="showLoginForm2()" href="">Next</a>
+						</div>
+						 <div ng-hide="loginform2">
+						 <p>1). What is your first school name ?</p>
+						 <input type="text" class="form-control" ng-model="loginAnswer1" placeholder="Answer">
+						<br /> <a id="next_link" ng-click="showLoginForm3()" href="">Next</a>
+						 <a id="back_link" ng-click="showLoginForm1()" href="">Back</a>
+						 </div>
+						 <div ng-hide="loginform3">
+						<p>2). abcd ?</p>
+						 <input type="text" class="form-control" ng-model="loginAnswer2" placeholder="Answer"> 
+						<br /> <a id="next_link" ng-click="showLoginForm4()" href="">Next</a>
+						 <a id="back_link" ng-click="showLoginForm2()" href="">Back</a>
+						 </div>
+						 
+						 <div ng-hide="loginform4">
+						<p>3). abcd ?</p>
+						 <input type="text" class="form-control" ng-model="loginAnswer3" placeholder="Answer"> 
+						<br /> <button id="next_link" type="submit" ui-sref="dashboard" class="btn btn-primary">Submit</button>
+						 <a id="back_link" ng-click="showLoginForm3()" href="">Back</a>
+						 </div>
+</form>
+	   
+	   </div>
+	    <div class="col-sm-4"></div>
+	
+	   <div class="col-sm-12">&nbsp;<br /></div>
+	   <div class="col-sm-12">&nbsp;<br /></div>
+	   <div class="col-sm-12">&nbsp;<br /></div>
+	   
+	   </div>
+		<div class="footer text-center">
+<p>@Copy Right Reserved By HR Platform</p>
+</div>
+
+

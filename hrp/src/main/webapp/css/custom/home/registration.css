@@ -1,0 +1,60 @@
+ /*Created on 20-October-2016
+      Author: Nageswara rao
+      Copyright (c) 2016 by HR Platform. All Rights Reserved.*/ 
+
+.title{
+position: fixed;
+width: auto;
+height: 90px;
+top:0px;
+left:0px;
+right:0px;
+color:white;
+ background: linear-gradient(to right, white,#78bcfe, white);
+z-index: 888;
+}
+.mainContent{
+top:120px;
+}
+.sub-title{
+padding-left: 17px;
+} 
+#login_link{
+float:right;
+padding-left: 17px;
+}
+#next_link{
+float:right;
+padding-right: 17px;
+}
+#back_link
+{
+float:left;
+padding-right: 17px;	
+}
+#forgot_link{
+	float:right;
+}
+.form-control{
+    height: 37px;
+}
+
+.col-md-12{
+margin-top: 15px;
+}
+.footer{
+	 position:fixed;
+   left:0px;
+   bottom:0px;
+   height:40px;
+   width:100%;
+   padding-top:10px;
+	color:white;
+ background: linear-gradient(to right, white,#78bcfe, white);
+}
+
+.gridListdemoBasicUsage md-grid-list {
+  margin: 8px; }
+  
+  .gridListdemoBasicUsage .green {
+  background: #b9f6ca; }

@@ -1,0 +1,93 @@
+<!--  Created on 20-October-2016
+      Author: Nageswara rao
+      Copyright (c) 2016 by HR Platform. All Rights Reserved. -->
+
+  <div class="container">
+    <div class="row text-center title">
+         <h1>HR Platform</h1>
+	</div>
+
+      <div class="col-sm-12 mainContent">
+	  
+	  <div class="col-sm-4"></div>
+	   <div class="col-sm-4">
+	   <h2 class="sub-title">Register here</h2>
+	   <a id="login_link" ui-sref="login">Already Registered ?Login here</a> <br /><br />
+	  <form name="registerForm">
+	                <div ng-hide="registerform1">
+	                 <div class="col-md-12">
+		 					<div class="form-group has-feedback">
+								<input type="text" name="fName" id="fNameId" class="form-control"
+									placeholder="First Name" data-ng-model="fName"
+									maxlength="15" data-ng-required="true" />
+							</div>
+						</div>
+
+						 <div class="col-md-12">
+							<div class="form-group has-feedback">
+								<input type="text" name="lName" id="lNameId" class="form-control"
+									placeholder="Last Name" data-ng-model="lName"
+									maxlength="15" data-ng-required="true" />
+							</div>
+						</div>
+						 <div class="col-md-12">
+							<div class="form-group has-feedback">
+								<input type="text" name="mobile" id="mobileId" class="form-control"
+									placeholder="Mobile" data-ng-model="mobileNo"
+									maxlength="10" data-ng-required="true" />
+							</div>
+						</div>
+						 <div class="col-md-12">
+							<div class="form-group has-feedback">
+								<input type="text" name="email" id="emailId" class="form-control"
+									placeholder="Email" data-ng-model="emailId"
+									maxlength="50" data-ng-required="true" />
+							</div>
+						</div>
+						<a id="next_link" ng-click="showRegisterForm2()" href="">Next</a>
+						</div>
+						 <div ng-hide="registerform2">
+						 <p>1). What is your first school name ?</p>
+						 <input type="text" class="form-control" ng-model="registerAnswer1" placeholder="Answer">
+						 <p>2). are you good person name ?yes/no</p>
+						 <input type="text" class="form-control" ng-model="registerAnswer2" placeholder="Answer">
+						 <p>3). What is your father name ?</p>
+						 <input type="text" class="form-control" ng-model="registerAnswer3" placeholder="Answer">
+						 <p>4). What is your highest qualification ?</p>
+						 <input type="text" class="form-control" ng-model="registerAnswer4" placeholder="Answer">
+						 <p>5). What is your ssc marks ?</p>
+						 <input type="text" class="form-control" ng-model="registerAnswer5" placeholder="Answer">
+						 <br /> <a id="next_link" ng-click="showRegisterForm3()" href="">Next</a>
+						 <a id="back_link" ng-click="showRegisterForm1()" href="">Back</a>
+						 </div>
+						 <div ng-hide="registerform3">
+						 <p>6). abcd ?</p>
+						 <input type="text" class="form-control" ng-model="registerAnswer6" placeholder="Answer">
+						 <p>7). xyz ?</p>
+						 <input type="text" class="form-control" ng-model="registerAnswer7" placeholder="Answer">
+						 <p>8). What is your dog name ?</p>
+						 <input type="text" class="form-control" ng-model="registerAnswer8" placeholder="Answer">
+						 <p>9). What is your friend name ?</p>
+						 <input type="text" class="form-control" ng-model="registerAnswer9" placeholder="Answer">
+						 <p>10). What is your second school name ?</p>
+						 <input type="text" class="form-control" ng-model="registerAnswer10" placeholder="Answer">
+						 <br /> <button id="next_link" type="submit" class="btn btn-primary">Submit</button>
+						 <a id="back_link" ng-click="showRegisterForm2()" href="">Back</a>
+						 </div>
+</form>
+	   
+	   </div>
+	    <div class="col-sm-4"></div>
+	
+	   <div class="col-sm-12">&nbsp;<br /></div>
+	   <div class="col-sm-12">&nbsp;<br /></div>
+	   <div class="col-sm-12">&nbsp;<br /></div>
+	   
+	   </div>
+<div class="footer text-center">
+<p>@Copy Right Reserved By HR Platform</p>
+</div>
+
+	</div>
+	
+	

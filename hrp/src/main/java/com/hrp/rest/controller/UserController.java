@@ -170,8 +170,12 @@ public class UserController {
 	public @ResponseBody ServiceStatus getUserById(@PathVariable("id") Long id) {
 		ServiceStatus serviceStatus = new ServiceStatus();
 		User user = userService.getUserById(id);
+		if(user != null){
 		serviceStatus.setResult(user);
 		serviceStatus.setMessage("success");
+		}else{
+			serviceStatus.setStatus("failure");
+		}
 		return serviceStatus;
 		
    }

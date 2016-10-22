@@ -33,14 +33,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Boolean checkAnswer(Answer answer) {
-		
-		
 		return userDao.checkAnswer(answer) ;
 	}
 
 	@Override
 	public User getUserById(Long id) {
-		return userDao.getUserById(id);
+		return (User)userDao.get(User.class, id);
 	}
+
 
 }

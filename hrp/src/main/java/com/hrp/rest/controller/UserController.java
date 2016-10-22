@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -166,16 +167,33 @@ public class UserController {
 		return serviceStatus;
 	}
    
-   @RequestMapping(value ="/getUserById/{id}", method = RequestMethod.GET)
+   @RequestMapping(value ="/{id}", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ServiceStatus getUserById(@PathVariable("id") Long id) {
 		ServiceStatus serviceStatus = new ServiceStatus();
-		User user = userService.getUserById(id);
-		if(user != null){
-		serviceStatus.setResult(user);
-		serviceStatus.setMessage("success");
+		
+		if(id!=null){
+
+			User user=null;
+			try {
+				user=userService.getUserById(id);
+				if(user!=null){
+                  serviceStatus.setResult(user);
+                  serviceStatus.setMessage("success");
+                  serviceStatus.setStatus("success");
+				}else {
+					serviceStatus.setMessage("user not found");
+					serviceStatus.setStatus("failure");
+				}
+			} catch (Exception e) {
+				serviceStatus.setMessage("failure");
+				serviceStatus.setStatus("failure");
+				e.printStackTrace();
+			}
 		}else{
+			serviceStatus.setMessage("invalid id");
 			serviceStatus.setStatus("failure");
 		}
+		
 		return serviceStatus;
 		
    }

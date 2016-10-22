@@ -21,7 +21,7 @@ public class SkillsServiceImpl implements SkillsService {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Skills> getSkills() {
+	public List<Skills> getActiveSkills() {
 		Map<String,Object> properties=new HashMap<String,Object>();
 		properties.put("deletedYn", false);
 		return (List<Skills>) skillsDao.getEntitiesByMatchingProperties(Skills.class, properties);

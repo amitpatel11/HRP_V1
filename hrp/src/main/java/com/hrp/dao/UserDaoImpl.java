@@ -42,7 +42,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		Boolean flag = false;
 		Long count = (Long) session.createQuery(
 				"select count(*) from Answer a where a.answer =:answer and a.user.id =:userId and a.questions.id =:questionId")
-
 				.setParameter("answer", answer.getAnswer()).setParameter("questionId", answer.getQuestions().getId())
 				.setParameter("userId", answer.getUser().getId()).uniqueResult();
 
@@ -53,9 +52,15 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	}
 
 	@Override
-	public User getUserById(Long id) {
-		Criteria criteria = getSession().createCriteria(User.class);
-		return (User) criteria.add(Restrictions.eq("id", id)).uniqueResult();
+	public Long getProfileIdByUserId(Long userId) {
+		Session session=getSession();
+		Long profileId=(Long)session.createQuery("select userProfile.id from User where id =:userId")
+		 .setParameter("userId",userId).uniqueResult();
+		return profileId;
 	}
+
+	
+
+	
 
 }

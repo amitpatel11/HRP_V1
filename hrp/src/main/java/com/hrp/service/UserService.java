@@ -16,5 +16,5 @@ public interface UserService {
 	Boolean checkAnswer(Answer answer);
 	
 	User getUserById(Long id);
-    
+	 
 }

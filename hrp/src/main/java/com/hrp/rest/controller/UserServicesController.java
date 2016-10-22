@@ -24,10 +24,35 @@ public class UserServicesController {
 	@Autowired
 	UserServicesService userServicesService;
 
-	@RequestMapping(value = "/getUserServicesById/{userId}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody ServiceStatus getUserServicesById(@PathVariable("userId") Long userId) {
+	@RequestMapping(value = "/active/{userId}", method = RequestMethod.GET, produces = "application/json")
+	public  ServiceStatus getUserServicesById(@PathVariable("userId") Long userId) {
 		ServiceStatus serviceStatus = new ServiceStatus();
-		List<UserServices> userServicesList = userServicesService.getAllActiveServicesByUserId(userId);
+		if(userId!=null){
+			List<UserServices> userServices=null;
+			try {
+				
+				userServices=userServicesService.getActiveUserServicesByUserId(userId);
+				if(userServices!=null&userServices.size()>0){
+					serviceStatus.setResult(userServices);
+					serviceStatus.setStatus("success");
+					serviceStatus.setMessage("successfully got the user services");
+				}else {
+					serviceStatus.setMessage("no services found");
+					serviceStatus.setStatus("failure");
+				}
+				
+			} catch (Exception e) {
+				serviceStatus.setStatus("failure");
+				serviceStatus.setMessage("failure");
+			}
+			
+		}else {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("userid invalid");
+		}
+		
+		
+		List<UserServices> userServicesList = userServicesService.getActiveUserServicesByUserId(userId);
 		if (userServicesList.size() > 0) {
 			serviceStatus.setResult(userServicesList);
 			serviceStatus.setMessage("success");
@@ -42,14 +67,27 @@ public class UserServicesController {
 
 		ServiceStatus serviceStatus = new ServiceStatus();
 
-		if (userServicesRegistration.getUser() != null & userServicesRegistration.getRole() != null
-				& userServicesRegistration.getServices() != null & userServicesRegistration.getUser().getId() != null
-				& userServicesRegistration.getServices().getId() != null
+		if (userServicesRegistration.getUser() != null
+				& userServicesRegistration.getRole() != null
+				& userServicesRegistration.getServices() != null
+				& userServicesRegistration.getUser().getId() != null
+			    & userServicesRegistration.getServices().getId() != null
 				& userServicesRegistration.getRole().getId() != null & userServicesRegistration.getSkills() != null
 				& userServicesRegistration.getSkills().size() > 0) {
 			if (validateSkills(userServicesRegistration.getSkills())) {
+			
+				try {
+				
+					userServicesService.userServicesRegistration(userServicesRegistration);
+					serviceStatus.setMessage("successfully register user with services ");
+				    serviceStatus.setStatus("success");
+				  
+				} catch (Exception e) {
 
-				userServicesService.userServicesRegistration(userServicesRegistration);
+					serviceStatus.setMessage("failure");
+					serviceStatus.setStatus("failure");
+				}
+				
 
 			} else {
 				serviceStatus.setMessage("invalid skills id");

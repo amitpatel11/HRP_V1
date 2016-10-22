@@ -1,7 +1,9 @@
 package com.hrp.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +24,15 @@ public class UserServicesServiceImpl implements UserServicesService{
 	@Autowired
 	UserSkillsService userSkillsService;
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<UserServices> getAllActiveServicesByUserId(Long userId) {
-		return userServicesDao.getAllActiveServicesByUserId(userId);
+	public List<UserServices> getActiveUserServicesByUserId(Long userId) {
+		Map<String,Object> properties=new HashMap<String,Object>();
+		properties.put("user.id", userId);
+		return (List<UserServices>)userServicesDao.getEntitiesByMatchingProperties(UserServices.class, properties);
 	}
 
+	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public void userServicesRegistration(UserServicesRegistration userServicesRegistration) {
 		

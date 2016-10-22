@@ -34,7 +34,7 @@ public class User implements Serializable {
 	@JoinColumn(name = "user_profile_id")
 	private UserProfile userProfile;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	@JsonManagedReference
 	private List<Answer> answers;

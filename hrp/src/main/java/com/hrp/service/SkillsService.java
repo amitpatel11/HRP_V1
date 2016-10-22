@@ -6,5 +6,5 @@ import com.hrp.model.Skills;
 
 public interface SkillsService {
 
-	List<Skills> getSkills();
+	List<Skills> getActiveSkills();
 }

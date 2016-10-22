@@ -15,6 +15,6 @@ public interface UserDao extends Dao {
 	
 	Boolean checkAnswer(Answer answer);
 	
-	User getUserById(Long id);
+	Long getProfileIdByUserId(Long userId);
 
 }

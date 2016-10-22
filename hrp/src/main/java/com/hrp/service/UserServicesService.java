@@ -7,7 +7,7 @@ import com.hrp.model.UserServices;
 
 public interface UserServicesService{
 
-	List<UserServices> getAllActiveServicesByUserId(Long userId);
+	List<UserServices> getActiveUserServicesByUserId(Long userId);
 
 	void userServicesRegistration(UserServicesRegistration userServicesRegistration);
 }

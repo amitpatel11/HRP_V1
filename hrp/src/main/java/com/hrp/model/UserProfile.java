@@ -19,11 +19,14 @@ public class UserProfile {
 	Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "qualification_id")
+	@JoinColumn(name = "qualification_id",updatable=false,insertable=false)
 	private Qualification qualification;
 
+	@Column(name="qualification_id")
+	private Long qualificationId;
+	
 	@JoinColumn(name = "experience")
-	private int experience;
+	private Integer experience;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -46,25 +49,6 @@ public class UserProfile {
 	@Column(name = "deleted_yn")
 	private Boolean deletedYn;
 
-	public UserProfile() {
-		super();
-	}
-
-	public UserProfile(Integer id, Qualification qualification, int experience, String firstName, String middleName,
-			String lastName, String mobile, Date createdDate, Date updatedDate, Boolean deletedYn) {
-		super();
-		this.id = id;
-		this.qualification = qualification;
-		this.experience = experience;
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.mobile = mobile;
-		this.createdDate = createdDate;
-		this.updatedDate = updatedDate;
-		this.deletedYn = deletedYn;
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -81,11 +65,19 @@ public class UserProfile {
 		this.qualification = qualification;
 	}
 
-	public int getExperience() {
+	public Long getQualificationId() {
+		return qualificationId;
+	}
+
+	public void setQualificationId(Long qualificationId) {
+		this.qualificationId = qualificationId;
+	}
+
+	public Integer getExperience() {
 		return experience;
 	}
 
-	public void setExperience(int experience) {
+	public void setExperience(Integer experience) {
 		this.experience = experience;
 	}
 
@@ -145,12 +137,7 @@ public class UserProfile {
 		this.deletedYn = deletedYn;
 	}
 
-	@Override
-	public String toString() {
-		return "UserProfile [id=" + id + ", qualification=" + qualification + ", experience=" + experience
-				+ ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", mobile="
-				+ mobile + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", deletedYn=" + deletedYn
-				+ "]";
-	}
 
+
+	
 }

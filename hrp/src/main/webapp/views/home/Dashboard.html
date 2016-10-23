@@ -1,63 +1,67 @@
- <div>
- <div class="row text-center title"><h1>HR Platform</h1></div>
+
+  <script type="text/ng-template" id="SubscriptionModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Select your role</h3>
+        </div>
+        <div class="modal-body text-center" id="modal-body">
+               
+                                   <p>
+		<input type="radio" name="userrole" id="userRoleId" value="1" checked=true  ng-model="userrole">&nbsp;&nbsp;Seeker
+									</p>
+									<p>
+	    <input type="radio" name="userrole" id="userRoleId" value="2" ng-model="userrole">&nbsp;&nbsp;Provider
+									</p>
  
-	<div style="margin-top: 7%; overflow: hidden">
-	
-	<div class="jumbotron" style="float:left; margin-left:10%; width:300px; height:300px">
-  		<p>This is content area</p>
-		<a ui-sref="#">
-		<div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center">
-			<md-button class="md-primary md-raised" ng-click="showConfirm($event)" style="float:right; display:inline" class="btn btn-primary">Service-1</md-button></a>
-		</div>
-	</div>
-	
-	<div class="jumbotron" style="float:left;  margin-left:10%; width:300px; height:300px">
-  		<p>This is content area</p>
-		<a ui-sref="#">
-		<div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center">
-		<md-button class="md-primary md-raised" ng-click="showConfirm($event)" style="float:right; display:inline" class="btn btn-primary">Service-2</md-button></a>
-		</div>
-	</div>
-	
-	<div class="jumbotron" style="float:left; margin-left:10%; width:300px; height:300px">
-  		<p>This is content area</p>
-		<a ui-sref="#">
-		<div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center">
-		<md-button class="md-primary md-raised" ng-click="showConfirm($event)"  style="float:right; display:inline" class="btn btn-primary">Service-3</md-button></a>
-		</div>
-	</div>
-	
-	
-	</div>
-
-	<div style="overflow: hidden">
-	<div class="jumbotron" style="float:left; margin-left:10%; width:300px; height:300px">
-  		<p>This is content area</p>
-		<a ui-sref="#">
-		<div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center">
-		<md-button class="md-primary md-raised" ng-click="showConfirm($event)" style="float:right; display:inline" class="btn btn-primary">Service-4</md-button></a>
-		</div>
-	</div>
-	
-	<div class="jumbotron" style="float:left; margin-left:10%; width:300px; height:300px">
-  		<p>This is content area</p>
-		<a ui-sref="#">
-		<div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center">
-		<md-button class="md-primary md-raised" ng-click="showConfirm($event)" style="float:right; display:inline" class="btn btn-primary">Service-5</md-button></a>
-		</div>
-	</div>
-	
-	<div class="jumbotron" style="float:left; margin-left:10%; width:300px; height:300px">
-  		<p>This is content area</p>
-		<a ui-sref="#">
-		<div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="" layout-align="center">
-		<md-button class="md-primary md-raised" ng-click="showConfirm($event)" style="float:right; display:inline" class="btn btn-primary">Service-6</md-button></a>
-		</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="registerForService(userrole)">Submit</button>
+            <button class="btn btn-warning" type="button" ng-click="closeRoleModal()">Cancel</button>
+        </div>
+    </script>
+    
+    <script type="text/ng-template" id="ServiceRegistrationModal.html">
+        <div class="modal-header" ng-init="getAllActiveSkills()">
+            <h3 class="modal-title" id="modal-title">Provide your Details</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+               Qualification : <input type="text" ng-disabled=true><br /><br />
+               Experience :<input type="text" ng-disabled=true><br /><br />
+               Skills  : <div ng-repeat="skil in skills track by $index" style="word-break:break-word;">
+										<input type="checkbox" ng-model="skil.value" ng-change="changeSkil(skil)">{{skil.name}}
+									</div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="serviceRegistration()">Submit</button>
+            <button class="btn btn-warning" type="button" ng-click="closeServiceRegistrationModal()">Cancel</button>
+        </div>
+    </script>
+    
+ <div class="row text-center title">
+         <h1>HR Platform</h1>
 	</div>
 
-</div>
-	
-	<div class="footer text-center">
+<div class="col-sm-12 mainContent" ng-init="getAllActiveServices()" >
+	  	<div class="col-sm-12">
+	  	<div class="col-sm-2"></div>
+	  	<div class="col-sm-8">
+	 <div  ng-repeat="service in serviceNames" style="width: 300px; height: 200px; border: 1px solid #78bcfe; float:left;margin: 20px; padding-left: 20px; padding-top: 30px;">
+	  
+	  <p>Service name :  <b>{{service.name}}</b></p><br />
+	   Description : <span style="word-break:break-word;">{{service.description}}</span><br /><br />
+	    <button class="btn btn-primary" ng-click="subscribeService(service.id)">Subscribe</button>
+	    
+	 </div>
+	 </div>
+	  <div class="col-sm-2" style="float: right;"><p>{{userName}}</p>
+	 <a ui-sref="login">LogOut</a></div>
+	 </div>
+	   <div class="col-sm-12">&nbsp;<br /></div>
+	   <div class="col-sm-12">&nbsp;<br /></div>
+	   <div class="col-sm-12">&nbsp;<br /></div>
+	   
+	   </div>
+		<div class="footer text-center">
 <p>@Copy Right Reserved By HR Platform</p>
 </div>
-</div>
+
+

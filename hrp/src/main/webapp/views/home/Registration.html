@@ -19,7 +19,8 @@
 		 					<div class="form-group has-feedback">
 								<input type="text" name="fName" id="fNameId" class="form-control"
 									placeholder="First Name" data-ng-model="fName"
-									maxlength="15" data-ng-required="true" />
+									maxlength="25" data-ng-required="true" />
+		 <span class="error-message" data-ng-show="registerFormFirstNameValidationMessage">{{registerFormFirstNameMessage}}</span> 
 							</div>
 						</div>
 
@@ -27,7 +28,9 @@
 							<div class="form-group has-feedback">
 								<input type="text" name="lName" id="lNameId" class="form-control"
 									placeholder="Last Name" data-ng-model="lName"
-									maxlength="15" data-ng-required="true" />
+									maxlength="25" data-ng-required="true" />
+									
+	 <span class="error-message" data-ng-show="registerFormLastNameValidationMessage">{{registerFormLastNameMessage}}</span>
 							</div>
 						</div>
 						 <div class="col-md-12">
@@ -35,6 +38,7 @@
 								<input type="text" name="mobile" id="mobileId" class="form-control"
 									placeholder="Mobile" data-ng-model="mobileNo"
 									maxlength="10" data-ng-required="true" />
+	 <span class="error-message" data-ng-show="registerFormMobileValidationMessage">{{registerFormMobileMessage}}</span>
 							</div>
 						</div>
 						 <div class="col-md-12">
@@ -42,38 +46,53 @@
 								<input type="text" name="email" id="emailId" class="form-control"
 									placeholder="Email" data-ng-model="emailId"
 									maxlength="50" data-ng-required="true" />
+	 <span class="error-message" data-ng-show="registerFormEmailValidationMessage">{{registerFormEmailMessage}}</span>
 							</div>
 						</div>
 						<a id="next_link" ng-click="showRegisterForm2()" href="">Next</a>
 						</div>
 						 <div ng-hide="registerform2">
-						 <p>1). What is your first school name ?</p>
-						 <input type="text" class="form-control" ng-model="registerAnswer1" placeholder="Answer">
-						 <p>2). are you good person name ?yes/no</p>
-						 <input type="text" class="form-control" ng-model="registerAnswer2" placeholder="Answer">
-						 <p>3). What is your father name ?</p>
-						 <input type="text" class="form-control" ng-model="registerAnswer3" placeholder="Answer">
-						 <p>4). What is your highest qualification ?</p>
-						 <input type="text" class="form-control" ng-model="registerAnswer4" placeholder="Answer">
-						 <p>5). What is your ssc marks ?</p>
-						 <input type="text" class="form-control" ng-model="registerAnswer5" placeholder="Answer">
+						 <p>1). {{registerQuestion1}} ?</p>
+						 <input type="text" id="answer1" class="form-control" ng-model="registerAnswer1" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <span class="error-message" data-ng-show="RegisterAnswer1ValidationMessage">{{RegisterAnswer1Message}}</span><br />
+						 <p>2). {{registerQuestion2}} ?</p>
+						 <input type="text" id="answer2" class="form-control" ng-model="registerAnswer2" placeholder="Answer" maxlength="25" data-ng-required="true">
+						<span class="error-message" data-ng-show="RegisterAnswer2ValidationMessage">{{RegisterAnswer2Message}}</span><br />
+						 <p>3). {{registerQuestion3}} ?</p>
+						 <input type="text" id="answer3" class="form-control" ng-model="registerAnswer3" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <span class="error-message" data-ng-show="RegisterAnswer3ValidationMessage">{{RegisterAnswer3Message}}</span><br />
+						 <p>4). {{registerQuestion4}} ?</p>
+						 <input type="text" id="answer4" class="form-control" ng-model="registerAnswer4" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <span class="error-message" data-ng-show="RegisterAnswer4ValidationMessage">{{RegisterAnswer4Message}}</span><br />
+						 <p>5). {{registerQuestion5}} ?</p>
+						 <input type="text" id="answer5" class="form-control" ng-model="registerAnswer5" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <span class="error-message" data-ng-show="RegisterAnswer5ValidationMessage">{{RegisterAnswer5Message}}</span><br />
 						 <br /> <a id="next_link" ng-click="showRegisterForm3()" href="">Next</a>
 						 <a id="back_link" ng-click="showRegisterForm1()" href="">Back</a>
 						 </div>
 						 <div ng-hide="registerform3">
-						 <p>6). abcd ?</p>
-						 <input type="text" class="form-control" ng-model="registerAnswer6" placeholder="Answer">
-						 <p>7). xyz ?</p>
-						 <input type="text" class="form-control" ng-model="registerAnswer7" placeholder="Answer">
-						 <p>8). What is your dog name ?</p>
-						 <input type="text" class="form-control" ng-model="registerAnswer8" placeholder="Answer">
-						 <p>9). What is your friend name ?</p>
-						 <input type="text" class="form-control" ng-model="registerAnswer9" placeholder="Answer">
-						 <p>10). What is your second school name ?</p>
-						 <input type="text" class="form-control" ng-model="registerAnswer10" placeholder="Answer">
-						 <br /> <button id="next_link" type="submit" class="btn btn-primary">Submit</button>
-						 <a id="back_link" ng-click="showRegisterForm2()" href="">Back</a>
+						 <p>6). {{registerQuestion6}} ?</p>
+						 <input type="text" id="answer6" class="form-control" ng-model="registerAnswer6" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <span class="error-message" data-ng-show="RegisterAnswer6ValidationMessage">{{RegisterAnswer6Message}}</span><br />
+						 <p>7). {{registerQuestion7}} ?</p>
+						 <input type="text" id="answer7" class="form-control" ng-model="registerAnswer7" placeholder="Answer" maxlength="25" data-ng-required="true">
+						<span class="error-message" data-ng-show="RegisterAnswer7ValidationMessage">{{RegisterAnswer7Message}}</span><br />
+						 <p>8). {{registerQuestion8}} ?</p>
+						 <input type="text" id="answer8" class="form-control" ng-model="registerAnswer8" placeholder="Answer" maxlength="25" data-ng-required="true">
+						<span class="error-message" data-ng-show="RegisterAnswer8ValidationMessage">{{RegisterAnswer8Message}}</span><br />
+						 <p>9). {{registerQuestion9}} ?</p>
+						 <input type="text" id="answer9" class="form-control" ng-model="registerAnswer9" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <span class="error-message" data-ng-show="RegisterAnswer9ValidationMessage">{{RegisterAnswer9Message}}</span><br />
+						 <p>10). {{registerQuestion10}} ?</p>
+						 <input type="text" id="answer10" class="form-control" ng-model="registerAnswer10" placeholder="Answer" maxlength="25" data-ng-required="true">
+						<span class="error-message" data-ng-show="RegisterAnswer10ValidationMessage">{{RegisterAnswer10Message}}</span><br />
+						 <br /> <button id="next_link" type="submit" class="btn btn-primary" ng-click="registerUser()">Submit</button>
+						 <a id="back_link" ng-click="showRegisterBackForm2()" href="">Back</a>
 						 </div>
+						 <div ng-hide="successMessageDiv">
+					    <p class="success-message">You have registered successfully.Please<a ui-sref="login">Click here</a> to login  </p>
+						 </div>
+						 
 </form>
 	   
 	   </div>

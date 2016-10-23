@@ -24,14 +24,14 @@ public class UserServicesController {
 	@Autowired
 	UserServicesService userServicesService;
 
-	@RequestMapping(value = "/active/{userId}", method = RequestMethod.GET, produces = "application/json")
-	public  ServiceStatus getUserServicesById(@PathVariable("userId") Long userId) {
+	@RequestMapping(value = "/active/{userId}/{roleId}", method = RequestMethod.GET, produces = "application/json")
+	public  ServiceStatus getUserServicesById(@PathVariable("userId") Long userId,@PathVariable("roleId") Long roleId) {
 		ServiceStatus serviceStatus = new ServiceStatus();
-		if(userId!=null){
+		if(userId!=null&roleId!=null){
 			List<UserServices> userServices=null;
 			try {
 				
-				userServices=userServicesService.getActiveUserServicesByUserId(userId);
+				userServices=userServicesService.getActiveUserServicesByUserIdAndRoleId(userId,roleId);
 				if(userServices!=null&userServices.size()>0){
 					serviceStatus.setResult(userServices);
 					serviceStatus.setStatus("success");
@@ -48,16 +48,7 @@ public class UserServicesController {
 			
 		}else {
 			serviceStatus.setStatus("failure");
-			serviceStatus.setMessage("userid invalid");
-		}
-		
-		
-		List<UserServices> userServicesList = userServicesService.getActiveUserServicesByUserId(userId);
-		if (userServicesList.size() > 0) {
-			serviceStatus.setResult(userServicesList);
-			serviceStatus.setMessage("success");
-		} else {
-			serviceStatus.setStatus("Failed");
+			serviceStatus.setMessage("userid or roleId invalid");
 		}
 		return serviceStatus;
 	}

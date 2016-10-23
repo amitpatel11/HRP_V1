@@ -26,9 +26,10 @@ public class UserServicesServiceImpl implements UserServicesService{
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<UserServices> getActiveUserServicesByUserId(Long userId) {
+	public List<UserServices> getActiveUserServicesByUserIdAndRoleId(Long userId,Long roleId) {
 		Map<String,Object> properties=new HashMap<String,Object>();
 		properties.put("user.id", userId);
+		properties.put("role.id",roleId);
 		return (List<UserServices>)userServicesDao.getEntitiesByMatchingProperties(UserServices.class, properties);
 	}
 

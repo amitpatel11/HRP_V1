@@ -53,6 +53,7 @@ public class UserServicesServiceImpl implements UserServicesService{
 			userSkill=new UserSkills();
 			userSkill.setSkillId(skill.getId());
 			userSkill.setUserId(userServicesRegistration.getUser().getId());
+			userSkill.setServiceId(userServicesRegistration.getServices().getId());
 			userSkills.add(userSkill);
 		} 
 		userSkillsService.saveUserSkills(userSkills);

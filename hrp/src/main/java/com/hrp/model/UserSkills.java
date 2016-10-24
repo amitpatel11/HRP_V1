@@ -34,6 +34,14 @@ public class UserSkills {
 
 	@Column(name="skill_id")
 	private Long skillId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "service_id", updatable = false, insertable = false)
+	private Services services;
+
+	@Column(name="service_id")
+	private Long serviceId;
+	
 	
 	@Column(name = "created_date", updatable = false)
 	private Date createdDate;
@@ -61,6 +69,22 @@ public class UserSkills {
 	
 	
 	
+	public Services getServices() {
+		return services;
+	}
+
+	public void setServices(Services services) {
+		this.services = services;
+	}
+
+	public Long getServiceId() {
+		return serviceId;
+	}
+
+	public void setServiceId(Long serviceId) {
+		this.serviceId = serviceId;
+	}
+
 	public Long getUserId() {
 		return userId;
 	}

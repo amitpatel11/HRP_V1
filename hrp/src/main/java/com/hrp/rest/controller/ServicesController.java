@@ -44,4 +44,29 @@ public class ServicesController {
 		}
 		return serviceStatus;
 	}
+	
+	@RequestMapping(value="/all",method=RequestMethod.GET, produces = "application/json")
+	public ServiceStatus getAllServices() {
+		
+		ServiceStatus serviceStatus=new ServiceStatus();
+		
+		List<Services> services=null;
+		try {
+			
+			services=servicesService.getAllServices();
+			if(services!=null&services.size()>0){
+				serviceStatus.setResult(services);
+				serviceStatus.setMessage("successfully got the list");
+				serviceStatus.setStatus("success");
+			}else {
+				serviceStatus.setStatus("failure");
+				serviceStatus.setMessage("no services found");
+			}
+		} catch (Exception e) {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("faiure");
+			e.printStackTrace();
+		}
+		return serviceStatus;
+	}
 }

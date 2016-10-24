@@ -28,4 +28,10 @@ public class ServicesServiceImpl implements ServicesService {
 	
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Services> getAllServices() {
+		return (List<Services>) servicesDao.getAll(Services.class);
+	}
+
 }

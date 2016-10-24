@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hrp.constants.HrpConstants;
 import com.hrp.model.Answer;
 import com.hrp.model.Questions;
 import com.hrp.model.User;
 import com.hrp.service.QuestionsService;
 import com.hrp.service.UserService;
+import com.hrp.spring.config.HRPConfig;
 import com.hrp.util.HrpUtil;
 import com.hrp.util.ServiceStatus;
 
@@ -198,4 +200,37 @@ public class UserController {
 		
    }
 
+   @RequestMapping(value="/is/{email:.+}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+   public ServiceStatus checkIsUserRegister(@PathVariable("email") String email){
+	   ServiceStatus serviceStatus=new ServiceStatus();
+	   
+	   if(HrpUtil.isRegexTrue(HrpConstants.EMAIL_REGEX,email)){
+		   Long userId=null;
+		   try {
+			
+			   userId=userService.isUser(email);
+			   
+			   if(userId!=null){
+				   serviceStatus.setMessage("already register");
+				   serviceStatus.setStatus("failure");;
+			   }else{
+				   serviceStatus.setMessage("you can proceed registration with that email not yet registred");
+				   serviceStatus.setStatus("success");
+			   }
+			   
+		} catch (Exception e) {
+			e.printStackTrace();
+			serviceStatus.setMessage("failure");
+			   serviceStatus.setStatus("failure");
+
+		}
+		   
+	   }else{
+		   serviceStatus.setMessage("invalid email");
+		   serviceStatus.setStatus("failure");
+	   }
+	   
+	   return serviceStatus;
+   }
+   
 }

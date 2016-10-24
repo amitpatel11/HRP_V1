@@ -2,6 +2,18 @@
       Author: Nageswara rao
       Copyright (c) 2016 by HR Platform. All Rights Reserved.*/ 
 
+.error-message	{
+	color : red;
+	display:block;
+	margin-top:0px;
+	margin-bottom:-19px;
+}
+.success-message	{
+	color : green;
+	display:block;
+	margin-top:0px;
+	margin-bottom:-19px;
+}
 .title{
 position: fixed;
 width: auto;

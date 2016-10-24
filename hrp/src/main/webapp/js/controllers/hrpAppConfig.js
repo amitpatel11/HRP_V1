@@ -2,7 +2,7 @@
       Author: Nageswara rao
       Copyright (c) 2016 by HR Platform. All Rights Reserved.*/ 
 
-var hrpApp=angular.module('hrpApp',['ui.router','ngResource', 'ngMaterial', 'ngMessages']);
+var hrpApp=angular.module('hrpApp',['ui.router','ngResource', 'ngMaterial', 'ngMessages','ui.bootstrap','ngCookies']);
 
 hrpApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
     // For any unmatched url, send to /home

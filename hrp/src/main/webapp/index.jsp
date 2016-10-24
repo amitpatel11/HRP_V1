@@ -45,12 +45,14 @@
 <script type="text/javascript" src="js/lib/angular-oauth2.js"></script>
 <script type="text/javascript" src="js/lib/http-auth-interceptor.js"></script>
 <script type="text/javascript" src="js/lib/angular-google-gapi.min.js"></script>
+<script type="text/javascript" src="js/lib/ui-bootstrap-tpls-1.3.2.min.js"></script>
 
 <!-- Custom js file -->
 <script type="text/javascript" src="js/controllers/hrpAppConfig.js"></script>
  <script type="text/javascript" src="js/controllers/home/RegistrationController.js"></script>
   <script type="text/javascript" src="js/controllers/home/LoginController.js"></script>
   <script type="text/javascript" src="js/controllers/home/DashboardController.js"></script>
+   <script type="text/javascript" src="js/services/dashboard/DashboardService.js"></script>
  <script type="text/javascript" src="js/services/home/userService.js"></script>
  
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

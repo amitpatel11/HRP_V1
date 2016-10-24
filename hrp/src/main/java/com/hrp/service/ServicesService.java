@@ -7,4 +7,6 @@ import com.hrp.model.Services;
 public interface ServicesService  {
 
 	List<Services> getActiveServices();
+	
+	List<Services> getAllServices();
 }

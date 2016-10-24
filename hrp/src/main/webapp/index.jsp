@@ -49,11 +49,14 @@
 
 <!-- Custom js file -->
 <script type="text/javascript" src="js/controllers/hrpAppConfig.js"></script>
- <script type="text/javascript" src="js/controllers/home/RegistrationController.js"></script>
-  <script type="text/javascript" src="js/controllers/home/LoginController.js"></script>
-  <script type="text/javascript" src="js/controllers/home/DashboardController.js"></script>
-   <script type="text/javascript" src="js/services/dashboard/DashboardService.js"></script>
- <script type="text/javascript" src="js/services/home/userService.js"></script>
+<script type="text/javascript" src="js/controllers/home/RegistrationController.js"></script>
+<script type="text/javascript" src="js/controllers/home/LoginController.js"></script>
+<script type="text/javascript" src="js/controllers/home/DashboardController.js"></script>
+<script type="text/javascript" src="js/controllers/service/ServiceDetailsController.js"></script>
+
+<script type="text/javascript" src="js/services/service/ServiceDetailsService.js"></script>  
+<script type="text/javascript" src="js/services/dashboard/DashboardService.js"></script>
+<script type="text/javascript" src="js/services/home/userService.js"></script>
  
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

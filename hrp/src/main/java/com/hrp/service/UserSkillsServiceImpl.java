@@ -1,6 +1,8 @@
 package com.hrp.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,20 @@ public class UserSkillsServiceImpl implements UserSkillsService {
 		}
 		
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UserSkills> getUserSkillsServiceById(Long userId) {
 
+		Map<String, Object> properties=new HashMap<String,Object>();
+		properties.put("userId",userId);
+		return (List<UserSkills>) userSkillsDao.getEntitiesByMatchingProperties(UserSkills.class, properties);
+	}
+
+	@Override
+	public List<Long> getSkillIdByUserId(Long userId) {
+		
+		return userSkillsDao.getSkillIdByUserId(userId);
+	}
 
 }

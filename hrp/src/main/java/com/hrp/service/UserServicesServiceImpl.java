@@ -68,6 +68,11 @@ public class UserServicesServiceImpl implements UserServicesService{
 		userSkillsService.saveUserSkills(userSkills);
 		
 	}
-
 	
+	@Override
+	public Long getRoleIdByUserId(Long userId) {
+
+		return userServicesDao.getRoleIdByUserId(userId);
+	}
+
 }

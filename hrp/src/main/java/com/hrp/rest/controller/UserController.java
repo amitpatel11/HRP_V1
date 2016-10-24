@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hrp.algorithm.HrpAlgorithm;
 import com.hrp.constants.HrpConstants;
+import com.hrp.dto.UserRegistrationDTO;
 import com.hrp.model.Answer;
 import com.hrp.model.Questions;
 import com.hrp.model.User;
@@ -35,6 +38,9 @@ public class UserController {
 	@Autowired
 	QuestionsService questionsService;
 
+	@Autowired
+	HrpAlgorithm hrpAlgorithm;
+	
 	@SuppressWarnings("null")
 	@RequestMapping(value ="/login/{username:.+}", method = RequestMethod.GET)
 	public @ResponseBody ServiceStatus loginUser(@PathVariable("username") String username) {
@@ -143,30 +149,33 @@ public class UserController {
 	
    @RequestMapping(value ="/registerUser", method = RequestMethod.POST,
 		   consumes={"application/json"},produces={"application/json"})
-	public  ServiceStatus registerUser(@RequestBody  User user)  {
+	public  ServiceStatus registerUser(@RequestBody  UserRegistrationDTO userDTO)  {
 		ServiceStatus serviceStatus=new ServiceStatus();
 			
 		String emailRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 		
-			if(user !=null && (user.getEmail().trim().length() > 0 && user.getEmail().trim().length() <= 50) && (user.getEmail().matches(emailRegex)) 
-					&& (user.getUserProfile().getFirstName().trim().length() > 0)&& (user.getUserProfile().getLastName().trim().length() > 0)
-					&& ( user.getUserProfile().getMobile().trim().length() > 0) && ( user.getUserProfile().getMobile().matches("\\d{10}"))){
-		
-					try {
-									userService.registerUser(user);
-									serviceStatus.setStatus("success");	
-									serviceStatus.setMessage("User registered successfully.");
-							} catch (Exception e) {
-									e.printStackTrace();
-									serviceStatus.setStatus("failure");	
-									serviceStatus.setMessage("Registration failed.");
-							}
+			if(userDTO !=null && (userDTO.getUser().getEmail().trim().length() > 0 && userDTO.getUser().getEmail().trim().length() <= 50) && (userDTO.getUser().getEmail().matches(emailRegex)) 
+					&& (userDTO.getUserProfile().getFirstName().trim().length() > 0)&& (userDTO.getUserProfile().getLastName().trim().length() > 0)
+					&& ( userDTO.getUserProfile().getMobile().trim().length() > 0) && ( userDTO.getUserProfile().getMobile().matches("\\d{10}")))
+				{
+						try {
+										userService.registerUser(userDTO);
+										serviceStatus.setStatus("success");	
+										serviceStatus.setMessage("User registered successfully.");
+								} catch (Exception e) {
+										e.printStackTrace();
+										serviceStatus.setStatus("failure");	
+										serviceStatus.setMessage("failure.");
+										
+										if(e instanceof ConstraintViolationException)
+											serviceStatus.setMessage("Registration failed due to duplicate entry or invalid payload, please provide correct data");
+								}
 				}else{
-								serviceStatus.setStatus("failure");	
-								serviceStatus.setMessage("Invalid details.");
+									serviceStatus.setStatus("failure");	
+									serviceStatus.setMessage("Invalid user registration details.");
 				}
 		
-		return serviceStatus;
+			return serviceStatus;
 	}
    
    @RequestMapping(value ="/{id}", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
@@ -232,5 +241,18 @@ public class UserController {
 	   
 	   return serviceStatus;
    }
+   
+   @RequestMapping(value ="/getProviders/{userId}/{serviceId}", method = RequestMethod.GET)
+ 	public ServiceStatus getProviders(@PathVariable("userId") Long userId, @PathVariable("serviceId") Long serviceId) {
+ 		ServiceStatus serviceStatus = new ServiceStatus();
+ 		
+ 		 System.out.println("Request coming to alogrithm");
+ 		 
+ 		 List<User> users= hrpAlgorithm.getProviders(userId,serviceId);
+ 		 
+ 		 serviceStatus.setResult(users);
+ 		 serviceStatus.setMessage("success");
+ 		 return serviceStatus;
+ }
    
 }

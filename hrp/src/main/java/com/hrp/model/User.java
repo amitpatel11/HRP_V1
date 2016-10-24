@@ -2,20 +2,15 @@ package com.hrp.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "user")
@@ -34,11 +29,6 @@ public class User implements Serializable {
 	@JoinColumn(name = "user_profile_id")
 	private UserProfile userProfile;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	@JsonManagedReference
-	private List<Answer> answers;
-
 	@Column(name = "created_date")
 	private Date createdDate;
 
@@ -52,14 +42,11 @@ public class User implements Serializable {
 		super();
 	}
 
-	
-	public User(Long id, String email, UserProfile userProfile, List<Answer> answers, Date createdDate,
-			Date updatedDate, Boolean deletedYn) {
+	public User(Long id, String email, UserProfile userProfile, Date createdDate, Date updatedDate, Boolean deletedYn) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.userProfile = userProfile;
-		this.answers = answers;
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 		this.deletedYn = deletedYn;
@@ -87,14 +74,6 @@ public class User implements Serializable {
 
 	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
-	}
-
-	public List<Answer> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(List<Answer> answers) {
-		this.answers = answers;
 	}
 
 	public Date getCreatedDate() {
@@ -127,8 +106,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", userProfile=" + userProfile + ", answers=" + answers
-				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", deletedYn=" + deletedYn + "]";
+		return "User [id=" + id + ", email=" + email + ", userProfile=" + userProfile + ", createdDate=" + createdDate
+				+ ", updatedDate=" + updatedDate + ", deletedYn=" + deletedYn + "]";
 	}
 
 }

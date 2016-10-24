@@ -7,6 +7,10 @@ import com.hrp.model.UserSkills;
 public interface UserSkillsService {
 
 	void saveUserSkills(UserSkills userSkills);
-	
+
 	void saveUserSkills(List<UserSkills> userSkills);
+
+	List<UserSkills> getUserSkillsServiceById(Long userId);
+
+	List<Long> getSkillIdByUserId(Long userId);
 }

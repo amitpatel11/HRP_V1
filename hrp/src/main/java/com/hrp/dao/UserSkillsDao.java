@@ -1,6 +1,9 @@
 package com.hrp.dao;
 
-public interface UserSkillsDao extends Dao{
+import java.util.List;
 
+public interface UserSkillsDao extends Dao{
+	
+	List<Long>  getSkillIdByUserId(Long userId);
 	
 }

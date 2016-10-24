@@ -2,10 +2,6 @@ package com.hrp.spring.config;
 
 import java.util.List;
 
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.ehcache.EhCacheCacheManager;
-import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +9,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -39,7 +34,7 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
 @EnableAsync
 @EnableScheduling
 @PropertySource(value = "file:///${HRPConfigPath}")
-@ComponentScan(basePackages = { "com.hrp.model","com.hrp.dao", "com.hrp.service", "com.hrp.servlet", "com.hrp.rest.controller",
+@ComponentScan(basePackages = { "com.hrp.model","com.hrp.dao", "com.hrp.service", "com.hrp.servlet", "com.hrp.rest.controller","com.hrp.algorithm",
 		 })
 @Import({ DataSourceConfig.class, HibernateConfiguration.class, EmailConfig.class})
 public class AppConfig extends WebMvcConfigurerAdapter {

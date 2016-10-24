@@ -13,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
 @Table(name = "answers")
 public class Answer {
@@ -25,9 +23,11 @@ public class Answer {
 	private Long id;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	@JsonBackReference
+	@JoinColumn(name = "user_id", updatable = false, insertable = false)
 	private User user;
+
+	@Column(name = "user_id")
+	private Long userId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "question_id", updatable = false, insertable = false)
@@ -52,25 +52,18 @@ public class Answer {
 		super();
 	}
 
-	public Answer(Long id, User user, Questions questions, Long questionId, String answer, Date createdDate,
-			Date updatedDate, Boolean deletedYn) {
+	public Answer(Long id, User user, Long userId, Questions questions, Long questionId, String answer,
+			Date createdDate, Date updatedDate, Boolean deletedYn) {
 		super();
 		this.id = id;
 		this.user = user;
+		this.userId = userId;
 		this.questions = questions;
 		this.questionId = questionId;
 		this.answer = answer;
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
 		this.deletedYn = deletedYn;
-	}
-
-	public Long getQuestionId() {
-		return questionId;
-	}
-
-	public void setQuestionId(Long questionId) {
-		this.questionId = questionId;
 	}
 
 	public Long getId() {
@@ -89,12 +82,28 @@ public class Answer {
 		this.user = user;
 	}
 
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 	public Questions getQuestions() {
 		return questions;
 	}
 
 	public void setQuestions(Questions questions) {
 		this.questions = questions;
+	}
+
+	public Long getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(Long questionId) {
+		this.questionId = questionId;
 	}
 
 	public String getAnswer() {
@@ -131,8 +140,9 @@ public class Answer {
 
 	@Override
 	public String toString() {
-		return "Answer [id=" + id + ", user=" + user + ", questions=" + questions + ", answer=" + answer
-				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", deletedYn=" + deletedYn + "]";
+		return "Answer [id=" + id + ", user=" + user + ", userId=" + userId + ", questions=" + questions
+				+ ", questionId=" + questionId + ", answer=" + answer + ", createdDate=" + createdDate
+				+ ", updatedDate=" + updatedDate + ", deletedYn=" + deletedYn + "]";
 	}
 
 }

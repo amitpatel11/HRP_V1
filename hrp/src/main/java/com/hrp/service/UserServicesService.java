@@ -12,4 +12,6 @@ public interface UserServicesService{
 	List<UserServices> getActiveUserServicesByUserIdAndRoleId(Long userId);
 
 	void userServicesRegistration(UserServicesRegistration userServicesRegistration);
+	
+	Long getRoleIdByUserId(Long userId);
 }

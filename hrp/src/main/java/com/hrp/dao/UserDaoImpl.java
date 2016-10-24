@@ -1,8 +1,11 @@
 package com.hrp.dao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -21,8 +24,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		return useList;
 	}
 
-	public void registerUser(User user) {
-		save(user);
+	public void registerUser(List<Answer> answers) {
+
+		for (Answer answer : answers) {
+			answer.setDeletedYn(false);
+			save(answer);
+		}
+		
 	}
 
 	@Override
@@ -59,7 +67,69 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		return profileId;
 	}
 
+	@Override
+	public Long saveUser(User user) {
+
+		return (Long) getSession().save(user);
+	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> selectProviders( Long serviceId,Long roleId,Integer experience) {
+
+		String query=" from User u  where  u.userProfile.experience >=:experience and  u.id in (select us.user.id from UserServices us where us.role.id !=:roleId and us.services.id =:serviceId )";
+		
+		Session session=getSession();
+		List<User> users=null;
+		users=session.createQuery(query).setParameter("experience", experience).setParameter("roleId",roleId).setParameter("serviceId", serviceId).list();
+		return users ;
+	}
+
+	@Override
+	public List<User> selectProvidersBasedOnExperience(Long serviceId, Long roleId, ArrayList<Long> idList) {
+		
+	//	String sql ="SELECT id FROM `user_profile` WHERE experience=(SELECT MAX(experience) FROM `user_profile`) AND id  NOT IN(23,24,25)";
+		
+		StringBuffer hql = new StringBuffer(" from UserProfile up  where experience=(select max(experience) from UserProfile up ) id not in (");
+		boolean flag = false;
+
+		for (Long id : idList) {
+			if (flag == false) {
+				hql.append(id);
+			} else {
+				if (idList.size() > 0) {
+					hql.append(",");
+					hql.append(id);
+				}
+			}
+			flag = true;
+		}
+
+		hql.append(")");
+		
+		System.out.println(" HQL -----> "+hql);
+		
+		Query query = getSession().createQuery(hql.toString());
+
+		 for(Iterator iterator=query.iterate(); iterator.hasNext();)
+		  {
+			 Long row = (Long) iterator.next();
+			 System.out.print("MAX experience " + row);
+		  }
+		 
+		// Criteria criteria = getSession().createCriteria(UserProfile.class).add(Restrictions.eq("experience", value));
+		 
+	//	String hql= "SELECT MAX(experience) FROM UserProfile up where id not in (:userId1, :userId2, :user)"
+		
+	/*	Criteria criteria = getSession().createCriteria(UserProfile.class);
+        
+		ProjectionList projList = Projections.projectionList();
+        projList.add(Projections.max("experience"));
+        projList.add(Projections.);
+        projList.add(Projections.avg("price"));*/
+		
+		return null;
+	}
 
 	
 

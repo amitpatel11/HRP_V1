@@ -1,9 +1,7 @@
 package com.hrp.dao;
 
-import java.util.List;
-
-import com.hrp.model.UserServices;
-
 public interface UserServicesDao extends Dao {
+	
+	Long getRoleIdByUserId(Long userId);
 	
 }

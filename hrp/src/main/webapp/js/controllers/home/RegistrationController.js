@@ -55,19 +55,19 @@ hrpApp.controller('registrationController',function($scope,$location,$http,userS
     
     $scope.showRegisterForm3=function()
     {
-    /*	if($scope.registerForm2Validations())
-		{*/
+    	if($scope.registerForm2Validations())
+		{
     	$scope.registerform1=true;
     	$scope.registerform2=true;
         $scope.registerform3=false;
         $scope.successMessageDiv=true;
-	/*	}*/
+		}
     }
     
     $scope.registerUser=function()
     {
-    	/*if($scope.registerForm3Validations())
-		{*/
+    	if($scope.registerForm3Validations())
+		{
    	var firstName=$scope.fName;
     	var lastName=$scope.lName;
     	var mobile=$scope.mobileNo;
@@ -169,7 +169,7 @@ hrpApp.controller('registrationController',function($scope,$location,$http,userS
                   }, function errorCallback(response) {
 
                  });
-		   /*  }*/
+		      }
          };
     
     $scope.registerForm1Validations=function()

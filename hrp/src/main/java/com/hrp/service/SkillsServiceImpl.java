@@ -27,4 +27,10 @@ public class SkillsServiceImpl implements SkillsService {
 		return (List<Skills>) skillsDao.getEntitiesByMatchingProperties(Skills.class, properties);
 		
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Skills> getAllSkills() {
+		return (List<Skills>)skillsDao.getAll(Skills.class);
+	}
 }

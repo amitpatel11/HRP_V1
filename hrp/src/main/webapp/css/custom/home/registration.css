@@ -32,8 +32,8 @@ top:120px;
 padding-left: 17px;
 } 
 #login_link{
-float:right;
-padding-left: 17px;
+float:left;
+padding-left:7px;
 }
 #next_link{
 float:right;

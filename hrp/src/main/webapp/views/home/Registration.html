@@ -12,7 +12,7 @@
 	  <div class="col-sm-4"></div>
 	   <div class="col-sm-4">
 	   <h2 class="sub-title">Register here</h2>
-	   <a id="login_link" ui-sref="login">Already Registered ?Login here</a> <br /><br />
+	    <br />
 	  <form name="registerForm">
 	                <div ng-hide="registerform1">
 	                 <div class="col-md-12">
@@ -52,45 +52,67 @@
 						<a id="next_link" ng-click="showRegisterForm2()" href="">Next</a>
 						</div>
 						 <div ng-hide="registerform2">
+						 <div class="form-group has-feedback">
 						 <p>1). {{registerQuestion1}} ?</p>
-						 <input type="text" id="answer1" class="form-control" ng-model="registerAnswer1" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <input type="text" id="answer1" class="form-control" ng-model="registerAnswer1" placeholder="Answer" maxlength="25" >
 						 <span class="error-message" data-ng-show="RegisterAnswer1ValidationMessage">{{RegisterAnswer1Message}}</span><br />
+						 </div>
+						 <div class="form-group has-feedback">
 						 <p>2). {{registerQuestion2}} ?</p>
-						 <input type="text" id="answer2" class="form-control" ng-model="registerAnswer2" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <input type="text" id="answer2" class="form-control" ng-model="registerAnswer2" placeholder="Answer" maxlength="25" >
 						<span class="error-message" data-ng-show="RegisterAnswer2ValidationMessage">{{RegisterAnswer2Message}}</span><br />
+						</div>
+						<div class="form-group has-feedback">
 						 <p>3). {{registerQuestion3}} ?</p>
-						 <input type="text" id="answer3" class="form-control" ng-model="registerAnswer3" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <input type="text" id="answer3" class="form-control" ng-model="registerAnswer3" placeholder="Answer" maxlength="25" >
 						 <span class="error-message" data-ng-show="RegisterAnswer3ValidationMessage">{{RegisterAnswer3Message}}</span><br />
+						 </div>
+						 <div class="form-group has-feedback">
 						 <p>4). {{registerQuestion4}} ?</p>
-						 <input type="text" id="answer4" class="form-control" ng-model="registerAnswer4" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <input type="text" id="answer4" class="form-control" ng-model="registerAnswer4" placeholder="Answer" maxlength="25" >
 						 <span class="error-message" data-ng-show="RegisterAnswer4ValidationMessage">{{RegisterAnswer4Message}}</span><br />
+						 </div>
+						 <div class="form-group has-feedback">
 						 <p>5). {{registerQuestion5}} ?</p>
-						 <input type="text" id="answer5" class="form-control" ng-model="registerAnswer5" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <input type="text" id="answer5" class="form-control" ng-model="registerAnswer5" placeholder="Answer" maxlength="25" >
 						 <span class="error-message" data-ng-show="RegisterAnswer5ValidationMessage">{{RegisterAnswer5Message}}</span><br />
+						 </div>
 						 <br /> <a id="next_link" ng-click="showRegisterForm3()" href="">Next</a>
 						 <a id="back_link" ng-click="showRegisterForm1()" href="">Back</a>
 						 </div>
 						 <div ng-hide="registerform3">
+						 <div class="form-group has-feedback">
 						 <p>6). {{registerQuestion6}} ?</p>
-						 <input type="text" id="answer6" class="form-control" ng-model="registerAnswer6" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <input type="text" id="answer6" class="form-control" ng-model="registerAnswer6" placeholder="Answer" maxlength="25" >
 						 <span class="error-message" data-ng-show="RegisterAnswer6ValidationMessage">{{RegisterAnswer6Message}}</span><br />
+						</div>
 						 <p>7). {{registerQuestion7}} ?</p>
-						 <input type="text" id="answer7" class="form-control" ng-model="registerAnswer7" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <input type="text" id="answer7" class="form-control" ng-model="registerAnswer7" placeholder="Answer" maxlength="25" >
 						<span class="error-message" data-ng-show="RegisterAnswer7ValidationMessage">{{RegisterAnswer7Message}}</span><br />
+						 <div class="form-group has-feedback">
 						 <p>8). {{registerQuestion8}} ?</p>
-						 <input type="text" id="answer8" class="form-control" ng-model="registerAnswer8" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <input type="text" id="answer8" class="form-control" ng-model="registerAnswer8" placeholder="Answer" maxlength="25" >
 						<span class="error-message" data-ng-show="RegisterAnswer8ValidationMessage">{{RegisterAnswer8Message}}</span><br />
+						</div>
+						<div class="form-group has-feedback">
 						 <p>9). {{registerQuestion9}} ?</p>
-						 <input type="text" id="answer9" class="form-control" ng-model="registerAnswer9" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <input type="text" id="answer9" class="form-control" ng-model="registerAnswer9" placeholder="Answer" maxlength="25" >
 						 <span class="error-message" data-ng-show="RegisterAnswer9ValidationMessage">{{RegisterAnswer9Message}}</span><br />
+						 </div>
+						 <div class="form-group has-feedback">
 						 <p>10). {{registerQuestion10}} ?</p>
-						 <input type="text" id="answer10" class="form-control" ng-model="registerAnswer10" placeholder="Answer" maxlength="25" data-ng-required="true">
+						 <input type="text" id="answer10" class="form-control" ng-model="registerAnswer10" placeholder="Answer" maxlength="25" >
 						<span class="error-message" data-ng-show="RegisterAnswer10ValidationMessage">{{RegisterAnswer10Message}}</span><br />
+						 </div>
 						 <br /> <button id="next_link" type="submit" class="btn btn-primary" ng-click="registerUser()">Submit</button>
 						 <a id="back_link" ng-click="showRegisterBackForm2()" href="">Back</a>
 						 </div>
 						 <div ng-hide="successMessageDiv">
 					    <p class="success-message">You have registered successfully.Please<a ui-sref="login">Click here</a> to login  </p>
+						 </div>
+						  <div class="col-sm-12">
+						  <br /><br />
+						 <a id="login_link" ui-sref="login">Already Registered ?Login here</a>
 						 </div>
 						 
 </form>

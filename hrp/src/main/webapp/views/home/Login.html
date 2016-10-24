@@ -10,16 +10,17 @@
 	  <div class="col-sm-4"></div>
 	   <div class="col-sm-4">
 	   <h2 class="sub-title">Login here</h2>
-	    <a id="login_link" ui-sref="register">If You Are Not Registered ?Register here</a> <br /><br />
+	    <br />
 	  <form name="loginForm">
 	                <div ng-hide="loginform1">
 	             
 			 			 <div class="col-md-12">
 							<div class="form-group has-feedback">
 								<input type="text" name="email" id="emailId" class="form-control"
-									placeholder="User Name" data-ng-model="userName"
+									placeholder="Enter email id" data-ng-model="userName"
 									maxlength="50" data-ng-required="true" />
         <span class="error-message" data-ng-show="userNameExist">{{userNameExistMessage}}</span>
+        <span class="error-message" data-ng-show="userNameFieldValidation">{{userNameFieldValidationMessage}}</span>
         <span class="error-message" data-ng-show="answersMessageDiv">{{answersMessage}}</span>
         
 							</div>
@@ -36,7 +37,7 @@
 						<p>2). {{LoginQuestionObj2.question}} ?</p>
 						 <input type="text" class="form-control" ng-model="loginAnswer2" placeholder="Answer"> 
 						<br /> <a id="next_link" ng-click="showLoginForm4()" href="">Next</a>
-						 <a id="back_link" ng-click="showLoginForm2()" href="">Back</a>
+						 <a id="back_link" ng-click="showLoginFormBack2()" href="">Back</a>
 						 </div>
 						 
 						 <div ng-hide="loginform4">
@@ -45,6 +46,9 @@
 						<br /> <button id="next_link" type="submit" class="btn btn-primary" ng-click="loginUser()">Submit</button>
 						 <a id="back_link" ng-click="showLoginForm3()" href="">Back</a>
 						 </div>
+						 <div class="col-sm-12">
+						 <br /><br /> <a id="login_link" ui-sref="register">If You Are Not Registered ?Register here</a>
+						  </div>
 </form>
 	   
 	   </div>

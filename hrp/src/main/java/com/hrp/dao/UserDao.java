@@ -20,7 +20,7 @@ public interface UserDao extends Dao {
 	
 	Long saveUser(User user);
 
-	List<User> selectProviders(Long serviceId, Long roleId, Integer experience);
+	List<Long> selectProviders(Long serviceId, Long roleId, Integer experience);
 
 	public List<User> selectProvidersBasedOnExperience(Long serviceId, Long roleId, ArrayList<Long> idList);
 

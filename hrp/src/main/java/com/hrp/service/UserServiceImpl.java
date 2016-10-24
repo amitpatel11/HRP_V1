@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> selectProviders( Long serviceId,Long roleId,Integer experience) {
+	public List<Long> selectProviders( Long serviceId,Long roleId,Integer experience) {
 
 		return userDao.selectProviders(serviceId, roleId, experience) ;
 	}

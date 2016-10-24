@@ -16,15 +16,9 @@ public class UserServicesDaoImpl extends AbstractDao implements UserServicesDao 
 		
 		List<Long > roleIds= session.createQuery("select us.role.id from UserServices us where us.user.id =:userId").setParameter("userId",userId).list();
 		Long roleId=null;
-		
-		for(Long id: roleIds){
-			System.out.println("id-------> "+id);
-		}
-		
 		if(roleIds!=null&roleIds.size()>0){
 			roleId= roleIds.get(0);
 		}
-		
 		return roleId;
 	}
 	

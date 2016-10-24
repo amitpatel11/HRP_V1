@@ -1,16 +1,41 @@
 package com.hrp.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="service_request")
 public class ServiceRequest {
+	
+	
+/*	Table: service_request
+	--------------------------
+
+	Column Information
+	----------------------
+
+	Field         Type          Collation          Null    Key     Default              Extra           Privileges                       Comment  
+	------------  ------------  -----------------  ------  ------  -------------------  --------------  -------------------------------  ---------
+	id            int(10)       (NULL)             NO      PRI     (NULL)               auto_increment  select,insert,update,references           
+	user_id       int(10)       (NULL)             NO      MUL     (NULL)                               select,insert,update,references           
+	service_id    int(10)       (NULL)             NO      MUL     (NULL)                               select,insert,update,references           
+	description   varchar(500)  latin1_swedish_ci  YES             (NULL)                               select,insert,update,references           
+	is_processed  tinyint(1)    (NULL)             NO              0                                    select,insert,update,references           
+	created_date  timestamp     (NULL)             NO              0000-00-00 00:00:00                  select,insert,update,references           
+	updated_date  timestamp     (NULL)             NO              CURRENT_TIMESTAMP                    select,insert,update,references           
+	deleted_yn    tinyint(1)    (NULL)    */
 	
 	@Id
 	@GeneratedValue
@@ -27,6 +52,11 @@ public class ServiceRequest {
 	
 	@Column(name="is_processed")
 	private Long isProcessed;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "service_request_id")
+	@JsonManagedReference
+	private List<ProviderServices> providerServices;
 	
 	@Column(name = "created_date")
 	private Date createdDate;
@@ -77,6 +107,14 @@ public class ServiceRequest {
 		this.isProcessed = isProcessed;
 	}
 
+	public List<ProviderServices> getProviderServices() {
+		return providerServices;
+	}
+
+	public void setProviderServices(List<ProviderServices> providerServices) {
+		this.providerServices = providerServices;
+	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -100,5 +138,8 @@ public class ServiceRequest {
 	public void setDeletedYn(Boolean deletedYn) {
 		this.deletedYn = deletedYn;
 	}
+
+	
+	
 	
 }

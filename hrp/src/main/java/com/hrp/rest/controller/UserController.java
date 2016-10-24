@@ -24,7 +24,6 @@ import com.hrp.model.Questions;
 import com.hrp.model.User;
 import com.hrp.service.QuestionsService;
 import com.hrp.service.UserService;
-import com.hrp.spring.config.HRPConfig;
 import com.hrp.util.HrpUtil;
 import com.hrp.util.ServiceStatus;
 
@@ -244,15 +243,14 @@ public class UserController {
    
    @RequestMapping(value ="/getProviders/{userId}/{serviceId}", method = RequestMethod.GET)
  	public ServiceStatus getProviders(@PathVariable("userId") Long userId, @PathVariable("serviceId") Long serviceId) {
- 		ServiceStatus serviceStatus = new ServiceStatus();
+ 	/*	ServiceStatus serviceStatus = new ServiceStatus();*/
  		
  		 System.out.println("Request coming to alogrithm");
  		 
- 		 List<User> users= hrpAlgorithm.getProviders(userId,serviceId);
+ 		
  		 
- 		 serviceStatus.setResult(users);
- 		 serviceStatus.setMessage("success");
- 		 return serviceStatus;
+ 		
+ 		 return hrpAlgorithm.getProviders(userId,serviceId);
  }
    
 }

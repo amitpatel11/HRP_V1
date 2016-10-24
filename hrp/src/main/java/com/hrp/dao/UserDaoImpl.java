@@ -75,14 +75,14 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> selectProviders( Long serviceId,Long roleId,Integer experience) {
+	public List<Long> selectProviders( Long serviceId,Long roleId,Integer experience) {
 
-		String query=" from User u  where  u.userProfile.experience >=:experience and  u.id in (select us.user.id from UserServices us where us.role.id !=:roleId and us.services.id =:serviceId )";
+		String query="select u.id from User u  where  u.userProfile.experience >=:experience and  u.id in (select us.user.id from UserServices us where us.role.id !=:roleId and us.services.id =:serviceId )";
 		
 		Session session=getSession();
-		List<User> users=null;
-		users=session.createQuery(query).setParameter("experience", experience).setParameter("roleId",roleId).setParameter("serviceId", serviceId).list();
-		return users ;
+		List<Long> providersIds=null;
+		providersIds=session.createQuery(query).setParameter("experience", experience).setParameter("roleId",roleId).setParameter("serviceId", serviceId).list();
+		return providersIds ;
 	}
 
 	@Override

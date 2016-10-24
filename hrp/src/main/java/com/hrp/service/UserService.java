@@ -19,7 +19,7 @@ public interface UserService {
 
 	User getUserById(Long id);
 
-	List<User> selectProviders(Long serviceId, Long roleId, Integer experience);
+	List<Long> selectProviders(Long serviceId, Long roleId, Integer experience);
 
 	List<User> selectProvidersBasedOnExperience(Long serviceId, Long roleId, ArrayList<Long> idList);
 

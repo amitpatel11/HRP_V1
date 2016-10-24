@@ -1,4 +1,4 @@
-/*package com.hrp.spring.config;
+package com.hrp.spring.config;
 
 import java.util.Properties;
 
@@ -59,4 +59,3 @@ public class EmailConfig {
 	    return properties;
 	}
 }
-*/

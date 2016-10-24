@@ -44,4 +44,29 @@ public class SkillsController {
 		}
 		return serviceStatus;
 	}
+	
+	@RequestMapping(value="/all", method=RequestMethod.GET, produces = "application/json")
+	public ServiceStatus getAllSkills() {
+		ServiceStatus serviceStatus=new ServiceStatus();
+		List<Skills> skills=null;		
+		try {			
+		skills=skillsService.getAllSkills();
+		if(skills!=null && skills.size()>0){
+			serviceStatus.setResult(skills);
+			serviceStatus.setStatus("success");
+			serviceStatus.setMessage("successfully got the list");
+			
+		}else {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("skills not found");
+		}
+			
+		} catch (Exception e) {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("failure");
+			e.printStackTrace();
+		}
+		return serviceStatus;
+	}
+	
 }

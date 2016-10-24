@@ -2,6 +2,7 @@ package com.hrp.rest.controller;
 
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.hrp.model.Skills;
 import com.hrp.model.UserServices;
 import com.hrp.service.UserServicesService;
 import com.hrp.util.ServiceStatus;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 @RestController
 @RequestMapping("/userServices")
@@ -73,9 +75,14 @@ public class UserServicesController {
 					serviceStatus.setMessage("successfully register user with services ");
 				    serviceStatus.setStatus("success");
 				  
-				} catch (Exception e) {
-
+				} 
+				
+				catch (Exception e) {
 					serviceStatus.setMessage("failure");
+					if(e instanceof ConstraintViolationException)
+						serviceStatus.setMessage("duplicate entry or invalid payload, please provide correct data");
+                   
+					 e.printStackTrace();
 					serviceStatus.setStatus("failure");
 				}
 				

@@ -113,12 +113,14 @@ hrpApp.controller('dashboardController',function($scope,$location,$http,$uibModa
 	    			services:{id:$scope.subscribableServiceId},
 	    			skills:$scope.userSkills
 	    	}
-	    	console.log(user);
+	    	console.log("ServiceRegistration", user);
 	     dashboardService.registerForService(user) 
 	 		  .then(function successCallback(response) {
-	 			  console.log(response);
+	 			  console.log("Response", response);
+	 			 console.log("Response.Data", response.data);
 	 	      	 if(response.data.status==="success"){
-	 	      		$window.location.reload();
+	 	      		//$window.location.reload();
+	 	      		$location.path("/serviceDetails");
 	 	      	 }
 	 	      	 else{
 	 	      	 }

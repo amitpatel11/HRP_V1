@@ -41,7 +41,7 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
 @PropertySource(value = "file:///${HRPConfigPath}")
 @ComponentScan(basePackages = { "com.hrp.model","com.hrp.dao", "com.hrp.service", "com.hrp.servlet", "com.hrp.rest.controller",
 		 })
-@Import({ DataSourceConfig.class, HibernateConfiguration.class})
+@Import({ DataSourceConfig.class, HibernateConfiguration.class, EmailConfig.class})
 public class AppConfig extends WebMvcConfigurerAdapter {
 
 	@Bean

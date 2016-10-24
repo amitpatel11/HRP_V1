@@ -9,5 +9,7 @@ public interface UserServicesService{
 
 	List<UserServices> getActiveUserServicesByUserIdAndRoleId(Long userId,Long roleId);
 
+	List<UserServices> getActiveUserServicesByUserIdAndRoleId(Long userId);
+
 	void userServicesRegistration(UserServicesRegistration userServicesRegistration);
 }

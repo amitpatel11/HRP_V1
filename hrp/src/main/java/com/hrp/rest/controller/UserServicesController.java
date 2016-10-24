@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hrp.dto.UserServicesRegistration;
@@ -17,7 +16,6 @@ import com.hrp.model.Skills;
 import com.hrp.model.UserServices;
 import com.hrp.service.UserServicesService;
 import com.hrp.util.ServiceStatus;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 @RestController
 @RequestMapping("/userServices")
@@ -55,6 +53,36 @@ public class UserServicesController {
 		return serviceStatus;
 	}
 
+	@RequestMapping(value = "/active/{userId}", method = RequestMethod.GET, produces = "application/json")
+	public  ServiceStatus getUserServicesById(@PathVariable("userId") Long userId) {
+		ServiceStatus serviceStatus = new ServiceStatus();
+		if(userId!=null){
+			List<UserServices> userServices=null;
+			try {
+				
+				userServices=userServicesService.getActiveUserServicesByUserIdAndRoleId(userId);
+				if(userServices!=null&userServices.size()>0){
+					serviceStatus.setResult(userServices);
+					serviceStatus.setStatus("success");
+					serviceStatus.setMessage("successfully got the user services");
+				}else {
+					serviceStatus.setMessage("no services found");
+					serviceStatus.setStatus("failure");
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				serviceStatus.setStatus("failure");
+				serviceStatus.setMessage("failure");
+			}
+			
+		}else {
+			serviceStatus.setStatus("failure");
+			serviceStatus.setMessage("userid invalid");
+		}
+		return serviceStatus;
+	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ServiceStatus userServicesRegistration(@RequestBody UserServicesRegistration userServicesRegistration) {
 

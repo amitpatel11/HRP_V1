@@ -70,3 +70,8 @@ margin-top: 15px;
   
   .gridListdemoBasicUsage .green {
   background: #b9f6ca; }
+  
+  hr {
+     margin-top: 0px; 
+     margin-bottom: 0px; 
+  }

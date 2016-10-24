@@ -155,11 +155,7 @@ hrpApp.controller('loginController',function($scope,$location,$http,userService,
                 		$location.path("/dashboard");
                 	  }
                 	else{
-                		$scope.loginform1=false;
-                		$scope.loginform2=true;
-                	    $scope.loginform3=true; 
-                	    $scope.loginform4=true;
-                	    $scope.userNameExist=false;
+                		 $scope.showLoginForm1();
                 	    $scope.answersMessageDiv=true;
                 	    $scope.answersMessage="Please enter correct answers."
                 	}

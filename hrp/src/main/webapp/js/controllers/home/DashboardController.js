@@ -4,27 +4,49 @@ hrpApp.controller('dashboardController',function($scope,$location,$http,$uibModa
 	
 	 dashboardService.getUserId($scope.userId) 
 	  .then(function successCallback(response) {
-     	 $scope.userName=response.data.result.email;
-     	  $scope.groupNames=response.data.result;
+     	 $scope.userName=response.data.result.userProfile.firstName+" "+response.data.result.userProfile.lastName;
          }, function errorCallback(response) {
 
         });
+	 
+	 $scope.seekingServices=[];
+	 $scope.providingServices=[];
 		 
 	 $scope.getAllActiveServices=function(){
+		 
+		 dashboardService.getAllSubscribedServicesByUserId($scope.userId) 
+		  .then(function successCallback(response) {
+	      	$scope.subscribedServiceNames=response.data.result;
+	      	angular.forEach($scope.subscribedServiceNames, function(value, key) {
+	      		if(value.role.id===1){
+	      			$scope.seekingServices.push(value);
+	      		}
+	      		else{
+	      			$scope.providingServices.push(value);
+	      		}
+           		
+           		});
+	      	
+             }, function errorCallback(response) {
+            	 
+            });
+		 
 		  dashboardService.getAllActiveService() 
 		  .then(function successCallback(response) {
 	      	$scope.serviceNames=response.data.result;
+	      	console.log($scope.serviceNames);
               }, function errorCallback(response) {
 
              });
-		  $scope.closeRoleModal = function() {
-				try{
-					$scope.modalInstance.close();
-				} catch (e) {
-				
-				}
-			};
 	   };
+	   
+	   $scope.closeRoleModal = function() {
+			try{
+				$scope.modalInstance.close();
+			} catch (e) {
+			
+			}
+		};
 		  
 		  $scope.subscribeService=function(serviceID)
 		  {
@@ -113,11 +135,10 @@ hrpApp.controller('dashboardController',function($scope,$location,$http,$uibModa
 	    			services:{id:$scope.subscribableServiceId},
 	    			skills:$scope.userSkills
 	    	}
-	    	console.log("ServiceRegistration", user);
+	    	console.log(user);
 	     dashboardService.registerForService(user) 
 	 		  .then(function successCallback(response) {
-	 			  console.log("Response", response);
-	 			 console.log("Response.Data", response.data);
+	 			  console.log(response);
 	 	      	 if(response.data.status==="success"){
 	 	      		//$window.location.reload();
 	 	      		$location.path("/serviceDetails");

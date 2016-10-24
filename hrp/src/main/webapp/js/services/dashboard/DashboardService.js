@@ -23,5 +23,10 @@ hrpApp.service("dashboardService", function($http) {
 			}
         	});
 	};
+	
+	this.getAllSubscribedServicesByUserId= function(id) {
+		return $http.get('userServices/active/'+id);
+	};
+
 		
 }); 

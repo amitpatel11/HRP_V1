@@ -1,4 +1,4 @@
-hrpApp.controller('serviceDetailsController',function($scope,$location,$http,$uibModal,dashboardDetailsService,$rootScope,$resource,$window,$cookieStore){
+hrpApp.controller('serviceDetailsController',function($scope,$location,$http,$uibModal,serviceDetailsService,$rootScope,$resource,$window,$cookieStore){
 	
 	$scope.userId=$cookieStore.get('loggedUserId');
 	

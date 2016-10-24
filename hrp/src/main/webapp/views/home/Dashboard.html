@@ -40,7 +40,7 @@
          <h1>HR Platform</h1>
 	</div>
 
-<div class="col-sm-12 mainContent" ng-init="getAllActiveServices()" >
+<div class="col-sm-12 mainContent" ng-init="getAllActiveServices()">
 	  	<div class="col-sm-12">
 	  	<div class="col-sm-2"></div>
 	  	<div class="col-sm-8">
@@ -48,12 +48,33 @@
 	  
 	  <p>Service name :  <b>{{service.name}}</b></p><br />
 	   Description : <span style="word-break:break-word;">{{service.description}}</span><br /><br />
-	    <button class="btn btn-primary" ng-click="subscribeService(service.id)">Subscribe</button>
+	    <button class="btn btn-primary" ng-click="subscribeService(service.id)" ng-disabled="service.name{{index+1}}">Subscribe</button>
 	    
 	 </div>
 	 </div>
-	  <div class="col-sm-2" style="float: right;"><p>{{userName}}</p>
+	  <div class="col-sm-2" style="float: right;">
+	  <div class="col-sm-12">
+	  <p>{{userName}}</p>
 	 <a ui-sref="login">LogOut</a></div>
+	 <div ng-if="seekingServices.length>0" class="col-sm-12" style="min-height: 300px">
+	<br /><br />
+	 <h4>Seeking Services</h4>
+	 <hr><br />
+	 <div  ng-repeat="seekerService in seekingServices">
+	 <a ui-sref="serviceDetails">{{seekerService.services.name}}</a><br />
+	 </div>
+	 </div>
+	 
+	  <div ng-if="providingServices.length>0" class="col-sm-12" style="min-height: 300px">
+	  <h4>Providing Services</h4>
+	  <hr>
+	  <br />
+	 <div  ng-repeat="providerService in providingServices">
+	 <a ui-sref="serviceDetails">{{providerService.services.name}}</a><br />
+	 </div>
+	 </div>
+	 
+	 </div>
 	 </div>
 	   <div class="col-sm-12">&nbsp;<br /></div>
 	   <div class="col-sm-12">&nbsp;<br /></div>
